@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator BMI</title>
+    <style>
+      .container-item {
+        border: 7px solid white;
+        width: 70%;
+        height: 300px;
+        padding-left: 19px;
+        padding-top: 18px;
+      }
+      .main-container {
+        background-color: aliceblue;
+        display: flex;
+      }
+
+      .buttonhijau {
+        width: 50pxpx;
+        height: 30px;
+        padding: auto;
+        background-color: bisque;
+      }
+      .buttonmerah {
+        width: 50px;
+        height: 30px;
+        background-color: darkgray;
+      }
+
+      .lebar {
+        width: 90%;
+      }
+    </style>
+    <script>
+      function hitungBMI() {
+        // Mendapatkan nilai input
+        var berat = parseFloat(
+          document.querySelector("input[name='berat']").value
+        );
+        var tinggi =
+          parseFloat(document.querySelector("input[name='tinggi']").value) /
+          100; // Konversi tinggi ke meter
+
+        // Validasi input
+        if (isNaN(berat) || isNaN(tinggi)) {
+          alert("Masukkan berat badan dan tinggi badan dengan benar!");
+          return;
+        }
+
+        // Menghitung BMI
+        var bmi = berat / (tinggi * tinggi);
+
+        // Menampilkan hasil BMI
+        var hasilElement = document.querySelector(".container-item div h1");
+        hasilElement.textContent = bmi.toFixed(2);
+
+        // Menampilkan penjelasan kelebihan atau kekurangan berat badan
+        var penjelasanElement = document.querySelector(".penjelasan");
+        if (bmi < 18.5) {
+          penjelasanElement.textContent =
+            "Berat badan Anda kurang. Anda mungkin mengalami kekurangan nutrisi atau masalah kesehatan lainnya.";
+        } else if (bmi >= 18.5 && bmi < 24.9) {
+          penjelasanElement.textContent =
+            "Berat badan Anda normal. Anda memiliki risiko yang lebih rendah terhadap berbagai masalah kesehatan.";
+        } else if (bmi >= 25 && bmi < 29.9) {
+          penjelasanElement.textContent =
+            "Anda berada dalam kategori overweight. Anda memiliki risiko lebih tinggi terhadap penyakit jantung, tekanan darah tinggi, dan diabetes.";
+        } else {
+          penjelasanElement.textContent =
+            "Anda berada dalam kategori obesitas. Anda memiliki risiko yang sangat tinggi terhadap berbagai masalah kesehatan serius.";
+        }
+      }
+
+      function reset() {
+        // Menghapus nilai input
+        document.querySelector("input[name='berat']").value = "";
+        document.querySelector("input[name='tinggi']").value = "";
+        document.querySelector("input[name='usia']").value = "";
+
+        // Mengubah nilai hasil menjadi 0
+        document.querySelector(".container-item div h1").textContent = "0";
+
+        // Menghapus penjelasan
+        document.querySelector(".penjelasan").textContent = "";
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <h3>Kalkulator BMI</h3>
+      <p>
+        Berat badan ideal adalah impian semua orang. Tidak hanya memiliki bentuk
+        tubuh yang menunjang penampilan, berat badan juga menandakan kondisi
+        tubuh yang sehat. Bagaimana dengan mu?
+      </p>
+      <p>Yuk hitung sekarang di Kalkulator BMI.</p>
+    </header>
+    <div class="main-container">
+      <div class="container-item">
+        <section class="container-form">
+          <div>
+            <form action="">
+              <label>Jenis Kelamin</label><br />
+              <input
+                type="radio"
+                id="pria"
+                name="kelamin"
+                value="laki-laki"
+                for=""
+              />
+              <label for="pria">Laki-laki</label>
+              <input
+                type="radio"
+                id="wanita"
+                name="kelamin"
+                value="perempuan"
+                for=""
+              />
+              <label for="wanita">Perempuan</label><br /><br />
+            </form>
+          </div>
+          <div>
+            <label class="jarak">Berat Badan (kg)</label><br />
+            <input class="lebar" type="number" name="berat" /><br /><br />
+          </div>
+          <div>
+            <label class="jarak">Tinggi Badan (cm)</label><br />
+            <input class="lebar" type="number" name="tinggi" /><br /><br />
+          </div>
+          <div>
+            <label class="jarak">Usia</label><br />
+            <input class="lebar" type="number" name="usia" /><br /><br />
+          </div>
+          <input
+            type="button"
+            class="buttonhijau"
+            value="Hitung BMI"
+            onclick="hitungBMI()"
+          />
+          <input
+            type="button"
+            class="buttonmerah"
+            value="Reset"
+            onclick="reset()"
+          />
+        </section>
+      </div>
+      <div class="container-item">
+        <h2 style="text-align: center">Hasil</h2>
+        <div>
+          <h1 style="text-align: center">0</h1>
+          <p
+            class="penjelasan"
+            style="text-align: center; font-weight: bold"
+          ></p>
+        </div>
+      </div>
+    </div>
+    <p style="text-align: center; font-weight: bold">Rumus BMI:</p>
+    <p style="text-align: center">
+      BMI = Berat Badan (kg) / (Tinggi Badan (m))^2
+    </p>
+    <div>
+      <h3>Keunggulan Fitur</h3>
+      <p>
+        1.Menghitung berat badan<br />
+        2.Menentukan kategori berat badan ideal atau Tidak<br />
+        3.Mempersiapkan program berat badan<br />
+      </p>
+      <p>
+        Kalkulator ini hanya boleh digunakan oleh orang dewasa<br />
+        (wanita hamil atau menyusui tidak boleh mengandalkan pembacaan<br />
+        BMI ini) dan tidak ada tindakan yang harus di ambil berdasarkan
+        nilainya<br />
+        selain berkonsultasi dengan orang yang memenuhi syarat seperti dokter.
+      </p>
+    </div>
+  </body>
+</html>
